@@ -1,0 +1,31 @@
+<h1 class="page-header">正在上映</h1>
+<div class="spinner" ng-show="isLoading">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div>
+
+<div class="list-group" ng-hide="isLoading">
+    <a href="#" class="list-group-item" ng-repeat="movie in list">
+        <span class="badge">{{movie.rating.average}}</span>
+        <div class="media">
+            <div class="media-left">
+               <img class="media-object" ng-src="{{movie.images.small}}" alt="...">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{movie.title}}</h4>
+                <p>导演: <span ng-repeat="director in movie.directors">{{director.name}}{{$last ? "" : ","}}</span> </p>
+                <p>类型: <span ng-repeat="type in movie.genres">{{type}}{{$last ? "" : ","}}</span></p>
+            </div>
+        </div>
+    </a>
+</div>
+<nav aria-label="..." ng-hide="isLoading">
+    <p>共{{total}}条 共{{totalPage}}页 当前是第{{currentPage}}页</p>
+    <ul class="pager">
+        <li ng-class="{disabled:currentPage == 1}"><a  ng-click="go(currentPage - 1)">Previous</a></li>
+        <li ng-class="{disabled:currentPage == totalPage}"><a  ng-click="go(currentPage + 1)">Next</a></li>
+    </ul>
+</nav>
